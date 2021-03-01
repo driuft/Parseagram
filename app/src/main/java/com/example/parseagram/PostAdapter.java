@@ -47,9 +47,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return posts.size();
     }
 
+    public void clear() {
+        posts.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Post> postList) {
+        posts.addAll(postList);
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvName;
         private TextView tvUser;
+        private TextView tvCreated;
         private TextView tvCaption;
         private ImageView ivImage;
         private ImageButton ibLike;
@@ -62,6 +73,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             super(itemView);
             tvUser = itemView.findViewById(R.id.tvUsername);
             tvCaption = itemView.findViewById(R.id.tvCaption);
+            tvCreated = itemView.findViewById(R.id.tvCreated);
             ivImage = itemView.findViewById(R.id.ivPost);
             ibLike = itemView.findViewById(R.id.ivLike);
             ivComment = itemView.findViewById(R.id.ivComment);
@@ -73,6 +85,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public void bind(Post post){
             tvUser.setText(post.getUser().getUsername());
             tvName.setText(post.getUser().getUsername());
+            tvCreated.setText(post.getKeyCreatedAt());
+            String created = post.getKeyCreatedAt();
+            Log.i(created, "post creation time");
             tvCaption.setText(post.getDescription());
             ParseFile profile = post.getUser().getParseFile("profilePic");
             if(profile != null){

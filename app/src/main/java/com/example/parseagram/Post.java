@@ -5,6 +5,8 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.util.Date;
+
 @ParseClassName("Post")
 public class Post extends ParseObject{
     public static final String KEY_DESCRIPTION = "description";
@@ -21,6 +23,8 @@ public class Post extends ParseObject{
     public void setDescription(String description){
         put(KEY_DESCRIPTION, description);
     }
+
+    public String getKeyCreatedAt() { return getString(KEY_CREATED_AT);}
 
     public ParseFile getImage(){
         return getParseFile(KEY_IMAGE);
