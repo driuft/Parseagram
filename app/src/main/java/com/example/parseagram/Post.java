@@ -24,8 +24,6 @@ public class Post extends ParseObject{
         put(KEY_DESCRIPTION, description);
     }
 
-    public String getKeyCreatedAt() { return getString(KEY_CREATED_AT);}
-
     public ParseFile getImage(){
         return getParseFile(KEY_IMAGE);
     }
@@ -40,14 +38,6 @@ public class Post extends ParseObject{
 
     public void setUser(ParseUser user){
         put(KEY_USER, user);
-    }
-
-    public String getName(){
-        return getString(KEY_NAME);
-    }
-
-    public void setName(String name){
-        put(KEY_NAME, name);
     }
 
     public boolean getLikeStatus(){

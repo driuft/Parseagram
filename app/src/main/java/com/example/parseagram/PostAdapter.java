@@ -14,10 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.example.parseagram.RelativeTimeAlgo.getRelativeTimeAgo;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
@@ -85,9 +88,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public void bind(Post post){
             tvUser.setText(post.getUser().getUsername());
             tvName.setText(post.getUser().getUsername());
-            tvCreated.setText(post.getKeyCreatedAt());
-            String created = post.getKeyCreatedAt();
-            Log.i(created, "post creation time");
+
+            // Get/set time created
+            String time = post.getCreatedAt().toString();
+            time = getRelativeTimeAgo(time) + " ago";
+            tvCreated.setText(time);
+
             tvCaption.setText(post.getDescription());
             ParseFile profile = post.getUser().getParseFile("profilePic");
             if(profile != null){
